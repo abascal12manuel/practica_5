@@ -1,0 +1,40 @@
+<h2>Editar Tarea</h2>
+
+<div class="row">
+    <div class="col-sm-6">
+        <form action="<?php echo APP_URL."tareas/editar"; ?>" method="POST">
+
+            <input type="hidden" name="id" class="form-control" value="<?php echo $this->tarea["id"]; ?>">
+            <label for="nombre">Nombre</label>
+
+            <input type="text" name="nombre" class="form-control" value="<?php echo $this->tarea["nombre"]; ?>">
+            <label for="descripcion">Descripción</label>
+            <textarea name="descripcion" class="form-control"><?php echo $this->tarea["descripcion"]; ?></textarea>
+    </div>
+    <div class="col-sm-6">
+            <label for="fecha">Fecha</label>
+            <input type="date" name="fecha" class="form-control" value="<?php echo $this->tarea["fecha"]; ?>">
+
+            <label for="prioridad">Prioridad</label>
+            <input type="range" name="prioridad" min="0" max="10" class="form-control" value="<?php echo $this->tarea["prioridad"]; ?>">
+
+            <label for="categoria">Categoria</label>
+            <select name="categoria_id" class="form-control">
+                <?php foreach ($this->categorias as $categoria) {
+                    if ($this->tarea["categoria_id"]==$categoria["id"]) { ?>
+                        <option selected value="<?php echo $categoria["id"]; ?>"><?php echo $categoria["nombre"]; ?></option>
+                    <?php }else{ ?>
+                        <option value="<?php echo $categoria["id"]; ?>"><?php echo $categoria["nombre"]; ?></option>
+                    <?php } } ?>
+            </select>
+
+        <br>
+
+        <a href="<?php echo APP_URL."tareas/index"; ?>" >
+            <button type="button" class="btn btn-default">Cancelar</button>
+        </a>
+        <input type="submit" class="btn btn-primary" value="Guardar Tarea">
+
+        </form>
+    </div>
+</div>
